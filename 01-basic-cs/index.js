@@ -1,5 +1,4 @@
 'use strict';
-
 console.log(`
 1.
 ---
@@ -29,11 +28,30 @@ const _ = require('lodash'); // https://lodash.com/docs/4.17.4
 const assert = require('assert');
 
 const database = require('./database.json');
+console.time('time')
+let items={}
+let hats = database.map(i=>i.hats)
 
+hats = hats.map(i=>{i.map(j=>j.id?(items[j.id]?items[j.id]=items[j.id]+1:items[j.id]=1):undefined)})
 
-const total = 0 // TODO
+let result = Object.keys(items).sort((i,j)=> {
+  if (items[i]<items[j]) {
+    return 1;
+  }
+  if (items[i]>items[j]) {
+    return -1;
+  }
+  // a must be equal to b
+  return 0;
+});
+
+result.map
+
+const total = items[result[0]]+items[result[1]]+items[result[2]]
+console.log(total)
+console.timeEnd('time')
 
 // Throws error on failure
 assert.equal(total, 23, `Invalid result: ${total} != 23`);
-
 console.log('Success!');
+

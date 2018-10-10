@@ -18,7 +18,7 @@ $ node utils/seed.js
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
+const csv = require('csv-express')
 // Setup database
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/mediastream-challenge');
@@ -27,6 +27,15 @@ const User = require('./models/User');
 // Setup Express.js app
 const app = express();
 
+app.get('/users', function(req, res) {
+	User.find()
+	.exec()
+	.then(result=>{
+		result=result.map(i=>{return {name:i.name,email:i.email}});
+		res.csv(result,true,{"Access-Control-Allow-Origin": "*"},200);
+		
+	})
+});
 // TODO
 
 app.listen(3000);
