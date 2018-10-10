@@ -45,10 +45,9 @@ let result = Object.keys(items).sort((i,j)=> {
   return 0;
 });
 
-result.map
 
 const total = items[result[0]]+items[result[1]]+items[result[2]]
-console.log(total)
+
 console.timeEnd('time')
 
 // Throws error on failure
