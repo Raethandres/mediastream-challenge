@@ -51,7 +51,7 @@ class List extends React.Component {
     return (
       <div>
         {this.props.children}
-        {this.props.dates.map(i=><p>{new Date(i).getDate()}/{new Date(i).toLocaleString('en-us', { month: "short" }).toLowerCase()}/{new Date(i).getFullYear()}</p>)}
+        {this.props.dates.map((i,j)=><p onClick={()=>alert(`${j} es el index de la fecha ${i}`)}>{new Date(i).getDate()}/{new Date(i).toLocaleString('en-us', { month: "short" }).toLowerCase()}/{new Date(i).getFullYear()}</p>)}
       </div>
       )
   }
